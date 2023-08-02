@@ -272,6 +272,17 @@ a:hover {
     margin-bottom: 30px;
   }
 }
+@media (max-width: 1199px) {
+  #home {
+    background-position: center;
+  }
+  #home:hover {
+    background-size: 1920px;
+    background-position: center;
+    transition: background-size ease 1s;
+  }
+}
+
 /* section */
 section {
   padding: 60px 0;
@@ -345,6 +356,12 @@ section {
   }
   to {
     opacity: 100%;
+  }
+}
+@media (max-width: 1199px) {
+  section {
+    padding: 0 0;
+    padding-left: 0px;
   }
 }
 /* About me */
