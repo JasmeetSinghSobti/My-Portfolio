@@ -181,5 +181,81 @@
       });
     }
   });
-  new PureCounter();
+  // new PureCounter();
 })();
+
+// JavaScript code for the project slider
+const slider = document.getElementById("slider");
+const sliderContainer = document.getElementById("sliding");
+const sliderBar = document.getElementById("slider-handle");
+const sliderBg = document.getElementById("slider-bg");
+let startX;
+let lastPos = 0;
+let clicked = false;
+let dragging = false;
+const maxDraggableDistance = sliderContainer.clientWidth - 416 * 4;
+sliderBar.style.width = `${
+  sliderBg.clientWidth - Math.abs(maxDraggableDistance)
+}px`;
+
+slider.addEventListener("mousedown", (e) => {
+  clicked = true;
+  startX = e.clientX;
+  slider.style.transition = "none";
+});
+sliderBar.addEventListener("mousedown", (e) => {
+  dragging = true;
+  startX = e.clientX;
+  slider.style.transition = "none";
+});
+
+document.addEventListener("mouseup", () => {
+  if (clicked) {
+    clicked = false;
+    slider.style.transition = "transform 0.5s ease"; // Restore transition
+  } else if (dragging) {
+    dragging = false;
+    slider.style.transition = "transform 0.5s ease"; // Restore transition
+  }
+});
+sliderBar.addEventListener("click", (e) => {
+  // Prevent click events from propagating when dragging
+  if (clicked) {
+    e.preventDefault();
+  }
+});
+slider.addEventListener("click", (e) => {
+  // Prevent click events from propagating when dragging
+  if (clicked) {
+    e.preventDefault();
+  }
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (clicked) {
+    const offsetX = e.clientX - startX;
+    lastPos += offsetX;
+
+    if (lastPos > 0) {
+      lastPos = 0;
+    } else if (lastPos < maxDraggableDistance) {
+      lastPos = maxDraggableDistance;
+    }
+    slider.style.transform = `translateX(${lastPos}px)`;
+    sliderBar.style.transform = `translateX(${-1 * lastPos}px)`;
+    startX = e.clientX;
+    console.log(maxDraggableDistance);
+  } else if (dragging) {
+    const offsetX = e.clientX - startX;
+    lastPos -= offsetX;
+    if (lastPos > 0) {
+      lastPos = 0;
+    } else if (lastPos < maxDraggableDistance) {
+      lastPos = maxDraggableDistance;
+    }
+    slider.style.transform = `translateX(${lastPos}px)`;
+    sliderBar.style.transform = `translateX(${-1 * lastPos}px)`;
+    startX = e.clientX;
+    console.log(maxDraggableDistance);
+  }
+});

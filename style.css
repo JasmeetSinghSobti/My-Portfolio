@@ -102,7 +102,6 @@ a:hover {
   transition: all 0.5s;
   padding: 0 15px;
   background: #0c0c0c;
-  overflow-y: auto;
   box-shadow: 2px 2px 4px #0c0c0c;
 }
 #header .profile img {
@@ -536,4 +535,25 @@ section {
   padding: 30px;
   width: 500px;
   height: auto;
+}
+.sliding {
+  position: relative;
+  height: 332px;
+  user-select: none;
+  /* -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 10%,
+    white 90%,
+    transparent
+  ); */
+  /* mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent); */
+}
+
+#slider {
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+.shadow-custom {
+  box-shadow: 4px 4px 6px rgb(0, 0, 0);
 }
